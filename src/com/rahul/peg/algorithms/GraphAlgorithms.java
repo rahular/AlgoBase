@@ -23,14 +23,32 @@ public class GraphAlgorithms {
 
 		while (!q.isEmpty()) {
 			Node<?> tempNode = q.remove();
-			if(visited.get(tempNode) == null)
-				handler.doThis(tempNode);
+			if (visited.get(tempNode) == null)
+				if(handler != null)
+					handler.performAction(tempNode);
 
 			visited.put(tempNode, true);
 			ArrayList<?> outGoers = tempNode.getEdges();
 			for (Object node : outGoers) {
-				if(visited.get(node) == null)
+				if (visited.get(node) == null)
 					q.add((Node<?>) node);
+			}
+		}
+	}
+
+	public static void DFS(Node<?> root, Handler handler) {
+		Hashtable<Node<?>, Boolean> visited = new Hashtable<Node<?>, Boolean>();
+
+		DFSHelper(root, handler, visited);
+	}
+
+	private static void DFSHelper(Node<?> node, Handler handler, Hashtable<Node<?>, Boolean> visited) {
+		if(visited.get(node) == null) {
+			if(handler != null)
+				handler.performAction(node);
+			visited.put(node, true);
+			for(Node<?> outGoer : node.getEdges()) {
+				DFSHelper(outGoer, handler, visited);
 			}
 		}
 	}
