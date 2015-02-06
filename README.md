@@ -3,7 +3,7 @@
 This is my attempt to build a usable library of well known algorithms which will be helpful in programming competitions or for my research. Expect it to be updated irregularly.
 
 ### Graphs
-Creating graphs are easy. There are 2 methods to create them:
+Creating graphs is easy. There are 2 methods to create them:
 * Node by node
 
 ```java
