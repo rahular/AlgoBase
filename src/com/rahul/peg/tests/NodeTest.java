@@ -5,6 +5,7 @@ package com.rahul.peg.tests;
 
 import com.rahul.peg.algorithms.GraphAlgorithms;
 import com.rahul.peg.graph.Node;
+import com.rahul.peg.util.Handler;
 
 /**
  * @author rahular
@@ -34,6 +35,12 @@ public class NodeTest {
 	
 	public static void main(String[] args) {
 		createGraph().printGraph();
-		GraphAlgorithms.BFS(createGraph());
+		GraphAlgorithms.BFS(createGraph(), new Handler() {
+			
+			@Override
+			public void doThis(Node<?> node) {
+				System.out.print(node.getData() + " ");
+			}
+		});
 	}
 }

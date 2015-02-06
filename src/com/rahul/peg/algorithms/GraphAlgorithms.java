@@ -9,12 +9,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import com.rahul.peg.graph.Node;
+import com.rahul.peg.util.Handler;
 
 /**
  * @author rahular Feb 6, 2015
  */
 public class GraphAlgorithms {
-	public static void BFS(Node<?> root) {
+	public static void BFS(Node<?> root, Handler handler) {
 		Hashtable<Node<?>, Boolean> visited = new Hashtable<Node<?>, Boolean>();
 		Queue<Node<?>> q = new LinkedList<Node<?>>();
 
@@ -23,7 +24,7 @@ public class GraphAlgorithms {
 		while (!q.isEmpty()) {
 			Node<?> tempNode = q.remove();
 			if(visited.get(tempNode) == null)
-				System.out.print(tempNode.getData() + " ");
+				handler.doThis(tempNode);
 
 			visited.put(tempNode, true);
 			ArrayList<?> outGoers = tempNode.getEdges();
