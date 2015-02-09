@@ -16,11 +16,11 @@ import com.rahul.peg.util.Handler;
  */
 public class Node<NodeDataType> {
 	private NodeDataType data;
-	private ArrayList<Node<NodeDataType>> edges;
+	private ArrayList<Node<?>> edges;
 	private ArrayList<Integer> weights;
 
 	public Node() {
-		this.edges = new ArrayList<Node<NodeDataType>>();
+		this.edges = new ArrayList<Node<?>>();
 		this.weights = new ArrayList<Integer>();
 	}
 
@@ -37,7 +37,7 @@ public class Node<NodeDataType> {
 		this.data = data;
 	}
 
-	public ArrayList<Node<NodeDataType>> getEdges() {
+	public ArrayList<Node<?>> getEdges() {
 		return edges;
 	}
 
@@ -93,21 +93,21 @@ public class Node<NodeDataType> {
 	 */
 	public void printGraph() {
 
-		Queue<Node<NodeDataType>> currentLevel = new LinkedList<Node<NodeDataType>>();
-		Queue<Node<NodeDataType>> nextLevel = new LinkedList<Node<NodeDataType>>();
+		Queue<Node<?>> currentLevel = new LinkedList<Node<?>>();
+		Queue<Node<?>> nextLevel = new LinkedList<Node<?>>();
 
 		currentLevel.add(this);
 
 		while (!currentLevel.isEmpty()) {
-			Iterator<Node<NodeDataType>> iter = currentLevel.iterator();
+			Iterator<Node<?>> iter = currentLevel.iterator();
 			while (iter.hasNext()) {
-				Node<NodeDataType> currentNode = iter.next();
+				Node<?> currentNode = iter.next();
 				nextLevel.addAll(currentNode.getEdges());
 				System.out.print(currentNode.getData() + " ");
 			}
 			System.out.println();
 			currentLevel = nextLevel;
-			nextLevel = new LinkedList<Node<NodeDataType>>();
+			nextLevel = new LinkedList<Node<?>>();
 		}
 	}
 
@@ -118,13 +118,12 @@ public class Node<NodeDataType> {
 	 * @return Adjacency matrix
 	 */
 	public int[][] getAdjMatrix() {
-		final ArrayList<Node<NodeDataType>> nodes = new ArrayList<Node<NodeDataType>>();
+		final ArrayList<Node<?>> nodes = new ArrayList<Node<?>>();
 		GraphAlgorithms.BFS(this, new Handler() {
 			
-			@SuppressWarnings("unchecked")
 			@Override
 			public void performAction(Node<?> node) {
-				nodes.add((Node<NodeDataType>) node);
+				nodes.add(node);
 			}
 		});
 		
