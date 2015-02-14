@@ -24,7 +24,7 @@ public class Util {
 		for (int i = 0; i < adjMatrix.length; i++) {
 			nodes.get(i).setData(data[i]);
 			for (int j = 0; j < adjMatrix[i].length; j++) {
-				if (adjMatrix[i][j] < Integer.MAX_VALUE)
+				if (i != j && adjMatrix[i][j] < Integer.MAX_VALUE)
 					nodes.get(i).addEdge(nodes.get(j), adjMatrix[i][j]);
 			}
 		}

@@ -85,5 +85,23 @@ public class NodeTest {
 				System.out.print(node.getData() + " ");
 			}
 		});
+		
+		System.out.println("\nPost Order Traversal: ");
+		GraphAlgorithms.postOrder(root, new Handler() {
+			
+			@Override
+			public void performAction(Node<?> node) {
+				System.out.print(node.getData() + " ");
+			}
+		});
+		
+		System.out.println("\nPre Order Traversal: ");
+		GraphAlgorithms.preOrder(root, new Handler() {
+
+			@Override
+			public void performAction(Node<?> node) {
+				System.out.print(node.getData() + " ");
+			}
+		});
 	}
 }
