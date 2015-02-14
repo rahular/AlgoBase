@@ -46,6 +46,8 @@ Graph algorithms currently implemented are:
 
 * Breadth first traversal
 * Depth first traversal
+* Pre order Traversal
+* Post order Traversal
 
 Handlers can be given to these algorithms to perform certain actions on each node it visits. For example:
 
