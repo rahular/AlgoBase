@@ -41,6 +41,26 @@ public class GraphAlgorithms {
 
 		DFSHelper(root, handler, visited);
 	}
+	
+	public static void preOrder(Node<?> node, Handler handler) {
+		if(node == null) return;
+		if(handler != null) {
+			handler.performAction(node);
+		}
+		for(Node<?> child : node.getEdges()) {
+			preOrder(child, handler);
+		}
+	}
+	
+	public static void postOrder(Node<?> node, Handler handler) {
+		if(node == null) return;
+		for(Node<?> child : node.getEdges()) {
+			postOrder(child, handler);
+		}
+		if(handler != null) {
+			handler.performAction(node);
+		}
+	}
 
 	private static void DFSHelper(Node<?> node, Handler handler, Hashtable<Node<?>, Boolean> visited) {
 		if(visited.get(node) == null) {
